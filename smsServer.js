@@ -1,6 +1,7 @@
 const express = require('express');
 const sendSMS = require('./sendSMS');
 const { Webhook } = require('fedapay');
+require('dotenv').config();
 
 
 const endpointSecret = process.env.WEBHOOK_SEC
@@ -25,6 +26,7 @@ module.exports = function smsServer() {
       response.status(400).send(`Webhook Error: ${err.message}`);
     }
     let {entity} = event
+    console.error("montant ",entity.amount)
     // Handle the event
     switch (event.name) {
       case 'transaction.created':
