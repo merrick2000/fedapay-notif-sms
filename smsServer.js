@@ -52,6 +52,7 @@ module.exports = function smsServer() {
             res.status(500).send('Erreur lors de l\'envoi de l\'SMS');
         }
     });
+    app.get("/", (req, res) => res.send("Express on Vercel"));
 
     // TODO: Delivery reports route
 
