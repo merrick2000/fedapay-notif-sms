@@ -2,8 +2,8 @@
 
 const { Infobip, AuthType } = require("@infobip-api/sdk");
 
-const baseUrl = "y3wwkj.api.infobip.com"
-const key = "2172f45172690760db69f59777cb3039-d18ef194-e82b-4fa3-aeca-c100514b9336"
+const baseUrl = process.env.BASE_URL
+const key = process.env.KEY
 
 let infobip = new Infobip({
     baseUrl,

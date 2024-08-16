@@ -3,7 +3,7 @@ const sendSMS = require('./sendSMS');
 const { Webhook } = require('fedapay');
 
 
-const endpointSec = ""
+const endpointSecret = process.env.WEBHOOK_SEC
 
 const app = express();
 
