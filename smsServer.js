@@ -21,21 +21,33 @@ module.exports = function smsServer() {
   
     try {
       event = Webhook.constructEvent(request.body, sig, endpointSecret);
-      console.log(event)
     } catch (err) {
       response.status(400).send(`Webhook Error: ${err.message}`);
     }
-  
+    let {entity} = event
     // Handle the event
     switch (event.name) {
       case 'transaction.created':
         // Transaction créée
         break;
       case 'transaction.approved':
-        console.log(event)
+        sendSMS(entity.amount, 'approved')
+                .then(() => {
+                    console.log('SMS envoyé avec succès pour la transaction approuvée.');
+                })
+                .catch((error) => {
+                    console.error('Erreur lors de l\'envoi de l\'SMS pour la transaction approuvée:', error);
+                });
         break;
       case 'transaction.canceled':
         // Transaction annulée
+        sendSMS(entity.amount, 'canceled')
+                .then(() => {
+                    console.log('SMS envoyé avec succès pour la transaction approuvée.');
+                })
+                .catch((error) => {
+                    console.error('Erreur lors de l\'envoi de l\'SMS pour la transaction approuvée:', error);
+                });
         break;
       default:
         console.log(`Unhandled event type ${event.type}`);
