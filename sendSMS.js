@@ -19,20 +19,14 @@ let infobip = new Infobip({
 //     username: 'webdevjean9'
 //   });
 
-async function sendSMS(amount, type) {
+async function sendSMS() {
     try {
-        let message = `New order of ${amount} on Fedapay`
-        let title = 'New order'
-        if(type == 'canceled'){
-            message =  `New order of ${amount} canceled on Fedapay`
-            title = 'Order canceled'
-        }
+        
         const result = await infobip.channels.sms.send({
             type: 'text',
             messages: [{
                 destinations: [{to: '+22962384867'}],
-                text: message,
-                from: title
+                text: `New order on Fedapay`
             }]
 
         });
