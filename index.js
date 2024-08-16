@@ -1,4 +1,5 @@
-//const sendSMS = require('./sendSMS');
+require('dotenv').config();
+
 const smsServer = require('./smsServer');
 
 // TODO: Call sendSMS function
