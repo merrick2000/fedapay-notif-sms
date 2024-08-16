@@ -1,0 +1,19 @@
+{
+  "name": "send-fedapay-sms",
+  "version": "1.0.0",
+  "description": "send myself sms when a payment is succeed on fedapay",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@infobip-api/sdk": "^0.3.2",
+    "africastalking": "^0.7.0",
+    "express": "^4.19.2",
+    "fedapay": "^1.2.3",
+    "nodemon": "^3.1.4"
+  }
+}
