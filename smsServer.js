@@ -21,6 +21,7 @@ module.exports = function smsServer() {
   
     try {
       event = Webhook.constructEvent(request.body, sig, endpointSecret);
+      console.log(event)
     } catch (err) {
       response.status(400).send(`Webhook Error: ${err.message}`);
     }
