@@ -19,25 +19,31 @@ let infobip = new Infobip({
 //     username: 'webdevjean9'
 //   });
 
-async function sendSMS() {
+async function sendSMS(amount, type) {
     try {
-        
+        let message = `New order of ${amount} on Fedapay`;
+        let title = 'New order';
+
+        if (type === 'canceled') {
+            message = `Order of ${amount} canceled on Fedapay`;
+            title = 'Order canceled';
+        }
+
         const result = await infobip.channels.sms.send({
             type: 'text',
             messages: [{
-                destinations: [{to: '+22962384867'}],
-                text: `New order on Fedapay`
+                destinations: [{ to: '+22962384867' }],
+                text: message,
+                from: title
             }]
-
         });
-        // const result = await api.SMS.send({
-        //   to: ['+22962384867'], 
-        //   message: 'Hey Merrick, new order from your store...'
-        // });
-        console.log(result);
-      } catch(ex) {
-        console.error(ex);
-      } 
+
+        console.log('SMS envoyé avec succès :', result);
+        return result;
+    } catch (error) {
+        console.error('Erreur lors de l\'envoi de l\'SMS :', error);
+        throw error;
+    }
 }
 
 module.exports = sendSMS
