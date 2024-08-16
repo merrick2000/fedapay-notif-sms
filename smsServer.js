@@ -6,12 +6,13 @@ const { Webhook } = require('fedapay');
 const endpointSecret = process.env.WEBHOOK_SEC
 
 const app = express();
+const bodyParser = require('body-parser');
 
 
 module.exports = function smsServer() {
     app.use(express.json());
     app.use(express.urlencoded({extended: false}));
-    const bodyParser = require('body-parser');
+    
     // Match the raw body to content type application/json
     app.post('/webhook', bodyParser.raw({type: 'application/json'}), (request, response) => {
     const sig = request.headers['x-fedapay-signature'];
