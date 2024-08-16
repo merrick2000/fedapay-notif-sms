@@ -10,8 +10,8 @@ const bodyParser = require('body-parser');
 
 
 module.exports = function smsServer() {
-    app.use(express.json());
-    app.use(express.urlencoded({extended: false}));
+    // app.use(express.json());
+    // app.use(express.urlencoded({extended: false}));
     
     // Match the raw body to content type application/json
     app.post('/webhook', bodyParser.raw({type: 'application/json'}), (request, response) => {
